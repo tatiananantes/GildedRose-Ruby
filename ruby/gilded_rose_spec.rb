@@ -22,5 +22,19 @@ RSpec.describe GildedRose do
       items = gilded_rose.update_quality
       expect(items.first.quality).to eq(0) 
     end
+
+    it 'does not decrease quality lower than zero' do
+      item = Item.new('Normal item', 1, 0)
+      gilded_rose = GildedRose.new([item])
+      items = gilded_rose.update_quality
+      expect(items.first.quality).to eq(0) 
+    end
+
+    it 'does not decrease quality lower than zero' do
+      conjured_item = Item.new('Conjured item', 1, 1)
+      gilded_rose = GildedRose.new([conjured_item])
+      items = gilded_rose.update_quality
+      expect(items.first.quality).to eq(0) 
+    end
   end
 end

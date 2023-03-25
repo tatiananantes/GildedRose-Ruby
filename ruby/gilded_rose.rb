@@ -10,7 +10,7 @@ class GildedRose
         if item.quality > 0
           if item.name != "Sulfuras, Hand of Ragnaros"
             if item.name.include? 'Conjured'
-              item.quality = item.quality - 2
+              item.quality = [item.quality - 2, 0].max
             else
             item.quality = item.quality - 1
             end
