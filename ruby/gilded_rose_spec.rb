@@ -48,6 +48,12 @@ RSpec.describe GildedRose do
         gilded_rose.update_quality()
         expect(items.first.quality).to eq(8)
       end
+      it 'degrades the quality of a conjured item twice as fast' do
+        conjured_items = [Item.new('Conjured item', -1, 10)]
+        gilded_rose = GildedRose.new(conjured_items)
+        gilded_rose.update_quality()
+        expect(conjured_items.first.quality).to eq(6)
+      end
     end
 
     it 'increases the quality of Aged Brie the older it gets' do
@@ -96,7 +102,7 @@ RSpec.describe GildedRose do
     
       # On the day of the concert
       5.times { gilded_rose.update_quality() }
-      expect(backstage_passes.quality).to eq(0)
+      expect(backstage_passes.quality).to eq(40)
     
       # After the concert
       gilded_rose.update_quality()
